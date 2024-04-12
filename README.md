@@ -8,6 +8,8 @@ Continuando con el trabajo realizado anteriormente, y reutilizando aquella parte
 
 El árbol deberá permitir operaciones de inserción y borrado, así como las operaciones necesarias para detectar desequilibrios y re-equilibrar el árbol.
 
+Debe relizarse en su propio paquete.
+
 
 ## Grafos
 
@@ -48,7 +50,7 @@ public camino calculaCaminoMinimo(nodo inicial, nodo final)
 
 Añada aquellos métodos que sean necesarios para la operación habitual del grafo: añadir nodos, borrar nodos, recuperar/buscar nodos, añadir arcos, borrar arcos, recuperar/buscar arcos...
 
-
+Debe realizarse en su propio paquete.
 
 
 
