@@ -1,87 +1,54 @@
-# EL2 - Parte de Árboles
-Los árboles son estructuras de datos organizadas de manera jerárquica.
-Se componen de una serie de nodos, conectados en una dirección "descendente", y estos nodos en su interior contienen los datos a almacenar. 
+# EL3 - AVL y Grafos
 
-Existen tres tipos de nodos: 
-* los nodos comunes, que son los que componen el interior del árbol, 
-* los nodos hoja, que son los nodos que no tienen ningún nodo inferior conectados a ellos, 
-* y el nodo raíz, que es el único nodo al que no conecta ningún otro.
+## AVL
 
-Un árbol, dada su naturaleza recursiva, se compone de otros subárboles, los cuales a su vez se componen de otros subárboles, hasta que no existen más nodos.
+**Ejercicio**:
 
-Existen distintos tipos de árboles.
-En esta parte de la práctica trabajaremos con los Árboles Binarios.
+Continuando con el trabajo realizado anteriormente, y reutilizando aquella parte que se pueda, se desea crear una clase de árbol equilibrado AVL.
 
-## Árboles Binarios
-Un árbol binario, en su modalidad de búsqueda, que es la que vamos a implementar, tiene nodos de **grado 2**.
-
-Pongamos sobre la mesa algunas definiciones para poder después referirnos con propiedad a distintas características de los árboles:
-* El *grado* de un nodo, que generaliza al de un árbol en su grado máximo, indica el número máximo posible de nodos ***hijos*** a los que da acceso.
-
-* La *altura* de un árbol indica cuántos niveles, como máximo, existe desde la raíz del árbol a su nodo hoja más alejado (también se calcula como *longitud del camino* máximo).
-
-* Se llama *nivel* al conjunto de nodos que están a la misma distancia (altura) de la raíz del árbol.
-
-* Se le llama *camino* a la secuencia de nodos que hay que recorrer hasta llegar a un nodo del árbol.
-
-* Se le llama *longitud de un camino* al número de saltos de nodos que hay que recorrer hasta llegar a un nodo del árbol (numero de nodos recorridos - 1).
-
-* Se dice que un árbol es *vacío* cuando no contiene ningún nodo.
-
-* Se le llama *árbol homogéneo* a aquel árbol cuyos subárboles tienen todos ***n*** hijos, siendo n el grado del árbol.
-
-* Se le llama *árbol completo* a aquel árbol cuyas hojas están todas a la misma pronfundidad.
-
-* Se le llama *arbol casi completo* a aquel árbol cuyas hojas están en dos niveles, Y las hojas del nivel más alejado de la raiz son contiguas desde la izquierda del árbol.
+El árbol deberá permitir operaciones de inserción y borrado, así como las operaciones necesarias para detectar desequilibrios y re-equilibrar el árbol.
 
 
-Estas definiciones serán relevantes para referirnos a los árboles de distintos tipos.
+## Grafos
 
-## Objetivo
-El objetivo del trabajo a realizar es construir el TAD ArbolBinarioDeBusqueda.
-Este árbol binario trabajará con un tipo de datos PARAMETRIZABLE y podrá recibir (añadir) nuevos elementos.
-Mantendrá los datos ordenados (usar interfaz "Comparable" de Java).
+Un grafo se define como G = <V,A>, donde V es un conjunto de vértices o nodos, y A es el conjunto de arcos que los une.
 
-Responderá a las preguntas:
-* getGrado():int
-* getAltura():int
-* getListaDatosNivel(nivel):Lista<TipoDato>
-* isArbolHomogeneo():Boolean
-* isArbolCompleto():Boolean
-* isArbolCasiCompleto():Boolean
-* getCamino(<TipoDato>):Lista<TipoDato>
+Existe una variante, denominada grafo dirigido, donde con la misma definición se impone que los arcos tienen una dirección.
 
-Permitirá las operaciones:
-* add(<TipoDato>):void
-* getSubArbolIzquierda():ArbolBinarioDeBusqueda<TipoDato>
-* getSubArbolDerecha():ArbolBinarioDeBusqueda<TipoDato>
+El número de vértices o nodos de un grafo se le denomina grado del grafo.
 
-Generará 3 tipos de listas de datos, representando los datos que contiene:
-* getListaPreOrden():Lista<TipoDato>
-* getListaPostOrden():Lista<TipoDato>
-* getListaOrdenCentral:Lista<TipoDato>
+Se denomina lazo o bucle a aquel arco que tiene como origen y fin al mismo nodo.
 
-Estas listas contendrán los datos de los elementos que tenga el árbol organizados según el tipo de recorrido que se indique (preorden, postorden u orden central).
+Un grafo se denomina "sencillo" si se dan dos condiciones:
+* No existen lazos.
+* No hay más de un arco para unir dos nodos.
 
-Como ejemplo práctico:
-1. Crea una subclase ArbolBinarioDeBusquedaEnteros.
-2. Añade el método que calcule la suma de los números insertados en ese árbol (getSuma():int).
-3. Crea un programa de prueba:
-   1. Añadir los números de 0 a 128 en orden.
-   2. Calcular la suma (getSuma())
-   3. Verifica que la suma es la misma accediendo en los 3 tipos de recorridos posibles.
-   4. Verifica que la suma es la misma cuando se suman los elementos de los subárboles izquierdo y derecho. ¿Por qué?
-   5. ¿Cuál es la altura del árbol?
-   6. ¿Cuál es el camino para llegar al valor 110? ¿Cuál es su longitud de camino?
-4. Crea un segundo programa de prueba.
-   1. Añade los números de 0 a 128 PERO DE MANERA ALEATORIA y sin repetir.
-   2. Calcula la suma (getSuma())
-   3. Verifica que la suma es la misma accediendo en los 3 tipos de recorridos posibles.
-   4. Verifica que la suma es la misma cuando se suman los elementos de los subárboles izquierdo y derecho. ¿Por qué?
-   5. ¿Cuál es la altura del árbol? ¿por qué? 
-   6. ¿Cuál es el camino para llegar al valor 110? ¿Cuál es su longitud de camino?
+Se denomina grafo "múltiple" a aquel que no es sencillo.
 
-* Explique las diferencias (si las ha habido) de los resultados obtenidos entre los dos programas de prueba.
-* ¿Qué sucede con los resultados si ejecuta los programas de prueba varias veces?
+Un camino en un grafo es una secuencia de vértices. Dependiendo de si el grafo es múltiple o no, esa secuencia tendrá ciertos condicionantes. Generalizando, se propone un camino como una secuencia de arcos que deben navegarse, para llegar desde un nodo inicial ni a un nodo final nf.
+
+Un camino es simple si los vértices no se repiten en la secuencia, con excepción del primero y el último, que pueden repetirse.
+
+Un ciclo simple es aquel camino de longitud mínima 1 que empieza y termina en el mismo vértice o nodo.
+
+Un grafo se le denomina planar si puede dibujarse en un plano sin que se cricen sus arcos.
+
+Un grafo (no dirigido) se denomina conexo si existe un camino que para todo par de vértices u,v
+
+Se denomina subgrafo a aquel grafo que contiene un subconjunto de nodos de otro grafo (no dirigido), y arcos comunes de ese subconjunto de nodos. Si contiene TODOS los arcos comunes del subconjunto de nodos, se le denomina además como "inducido".
+
+Esta estructura de grafo es muy habitual en matemáticas, pero en aplicaciones de los grafos puede ser necesario añadir información al grafo. Esta información puede añadirse a los nodos del grafo, a los arcos del grafo o a ambos. En estos casos, se denominan como grafos "etiquetados", que pueden ser dirigidos o no dirigidos, si bien habitualmente son dirigidos. En este último caso, se les denomina como grafos anotados.
+
+
+**Ejercicio**: 
+
+Cree un grafo capaz de almacenar la estructura de un mapa de carreteras, y añada la funcionalidad necesaria para:
+Calcular el camino mínimo entre dos nodos del grafo: 
+public camino calculaCaminoMinimo(nodo inicial, nodo final)
+
+Añada aquellos métodos que sean necesarios para la operación habitual del grafo: añadir nodos, borrar nodos, recuperar/buscar nodos, añadir arcos, borrar arcos, recuperar/buscar arcos...
+
+
+
 
 
